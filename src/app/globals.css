@@ -1,15 +1,10 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,7 +15,58 @@
 }
 
 body {
-  background: var(--background);
   color: var(--foreground);
+  background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  @apply bg-white text-black transition-colors dark:bg-neutral-950 dark:text-white;
+}
+
+/* 光沢感の強いガラスボックス */
+.glass-card {
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 4px 10px rgba(255, 255, 255, 0.3),
+    0 0 25px rgba(255, 255, 255, 0.6);
+}
+
+/* 疑似要素で光沢のある反射エフェクト */
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.glassButton {
+  @apply glow rounded-md border-2 px-4 py-2 shadow-md transition-all hover:bg-white/30 hover:shadow-lg hover:shadow-black/70 dark:border-transparent dark:bg-gradient-to-br dark:shadow-white/40 dark:hover:shadow-white/70;
+}
+
+.glow {
+  box-shadow:
+    0 0 10px rgba(255, 255, 255, 0.5),
+    0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.glow:hover {
+  box-shadow:
+    0 0 15px rgba(255, 255, 255, 0.8),
+    0 0 30px rgba(255, 255, 255, 0.5);
+}
+
+.glassListBlue {
+  @apply relative mb-3 overflow-hidden rounded-lg border-b-2 border-gray-500 bg-transparent text-center dark:border-b-2 dark:border-white/70 dark:bg-gradient-to-tr dark:from-blue-500/60 dark:to-40%;
+}
+
+.glassListGreen {
+  @apply relative mb-3 overflow-hidden rounded-lg border-b-2 border-gray-500 bg-transparent text-center dark:border-b-2 dark:border-white/70 dark:bg-gradient-to-tr dark:from-green-500/60 dark:to-40%;
+}
+
+.glassInput {
+  @apply relative overflow-hidden rounded-lg border-b-2 border-gray-600 bg-transparent p-2 focus:outline-none focus:ring-2 focus:ring-gray-600 dark:border-white/70 dark:to-40% dark:focus:ring-white;
 }

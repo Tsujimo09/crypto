@@ -1,0 +1,15 @@
+name: Daily API Call
+
+on:
+  schedule:
+    - cron: '0 15 * * *' # 毎日0時 (JST) に実行
+  workflow_dispatch: # 手動実行も可能
+
+jobs:
+  call-api:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call API with Secret Header
+        run: |
+          curl -X POST https://crypto-portfolio0922.vercel.app/api/History \
+            -H "x-api-key: ${{ secrets.CRON_SECRET_KEY }}"

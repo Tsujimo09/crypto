@@ -39,6 +39,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
+        token.image = user.image;
         token.totalAmount = user.totalAmount;
         token.jpyAmount = user.jpyAmount;
         token.hisFlg = user.hisFlg;

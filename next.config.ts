@@ -1,9 +1,9 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   /* config options here */
   images: {
-    domains: ["avatars.githubusercontent.com"], // ← 追加
+    domains: ['www.gravatar.com', 'avatars.githubusercontent.com'],
   },
 };
 
